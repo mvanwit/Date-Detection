@@ -32,11 +32,12 @@ for dates in extractedDates:
 	month.append(int(dates[1]))
 	year.append(int(dates[2]))
 
-#TODO: Detect if a date is valid
+# Detect if a date is valid
 
 isValid = []
-30daysMonths = [04, 06, 09, 11]
+30daysMonths = [04, 06, 09, 11] #April, June, September, November have 30 days
 
+	# Function that detects if a year is a leap year
 def isLeapYear(someYear):
 	if someYear%4 == 0 and someYear%100 != 0:
 		return True
@@ -46,11 +47,11 @@ def isLeapYear(someYear):
 		return False
 
 for i in range(len(day)):
-	if month[i] in 30daysMonths and day[i] == 31:
+	if month[i] in 30daysMonths and day[i] == 31: #31 days in a 30 days month
 		isValid.append('not valid')
-	elif month[i] == 02 and day[i] > 29:
+	elif month[i] == 02 and day[i] > 29: #more than 29 days in February
 		isValid.append('not valid')
-	elif month[i] == 02 and day[i] == 29 and not isLeapYear(year[i])
+	elif month[i] == 02 and day[i] == 29 and not isLeapYear(year[i]) #29 days in February not on a leap year
 		isValid.append('not valid')
 	else:
 		isValid.append('valid')
