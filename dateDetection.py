@@ -1,6 +1,17 @@
 #! python3
 
+import re, pyperclip
+
 #TODO: Create a regex object for dates in the DD/MM/YYYY format
+
+dateRegex = re.compile(r''' 
+
+		# Days from 01 to 31
+	/	# / separator
+		# Months from 01 to 12
+	/	# / separator
+		# Year from 1000 to 2999
+	''', re.VERBOSE)
 
 #TODO: Get the text off the clipboard
 
