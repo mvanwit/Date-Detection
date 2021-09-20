@@ -13,7 +13,9 @@ dateRegex = re.compile(r'''
 	([12]\d\d\d)				# Year from 1000 to 2999
 	''', re.VERBOSE)
 
-#TODO: Get the text off the clipboard
+# Get the text off the clipboard
+
+text = pyperclip.paste()
 
 #TODO: Extract the dates from this text
 
