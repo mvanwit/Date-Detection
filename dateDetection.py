@@ -68,3 +68,9 @@ for i in range(len(allDates)):
 result = '\n'.join(combinedDateValidation)
 
 pyperclip.copy(result)
+
+#UPGRADE IDEA
+#Call the program with an argument, to modify the date format
+#
+#			for example : dateDetection [YYYY/MM/DD]
+#
