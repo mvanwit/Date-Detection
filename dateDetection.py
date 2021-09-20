@@ -17,9 +17,20 @@ dateRegex = re.compile(r'''
 
 text = pyperclip.paste()
 
-#TODO: Extract the dates from this text
+# Extract the dates from this text
 
-#TODO: Store these strings in variables "day" "month" "year"
+extractedDates = dateRegex.findall(text)
+
+# Store these strings in variables "day" "month" "year"
+
+day = []
+month = []
+year = []
+
+for dates in extractedDates:
+	day.append(dates[0])
+	month.append(dates[1])
+	year.append(dates[2])
 
 #TODO: Create a function that can detect if a date is valid
 
