@@ -28,10 +28,33 @@ month = []
 year = []
 
 for dates in extractedDates:
-	day.append(dates[0])
-	month.append(dates[1])
-	year.append(dates[2])
+	day.append(int(dates[0]))
+	month.append(int(dates[1]))
+	year.append(int(dates[2]))
 
-#TODO: Create a function that can detect if a date is valid
+#TODO: Detect if a date is valid
+
+isValid = []
+30daysMonths = [04, 06, 09, 11]
+
+def isLeapYear(someYear):
+	if someYear%4 == 0 and someYear%100 != 0:
+		return True
+	elif someYear%400 == 0:
+		return True
+	else:
+		return False
+
+for i in range(len(day)):
+	if month[i] in 30daysMonths and day[i] == 31:
+		isValid.append('not valid')
+	elif month[i] == 02 and day[i] > 29:
+		isValid.append('not valid')
+	elif month[i] == 02 and day[i] == 29 and not isLeapYear(year[i])
+		isValid.append('not valid')
+	else:
+		isValid.append('valid')
+
+
 
 #TODO: Copy the extracted dates and the validation infos to the clipboard
