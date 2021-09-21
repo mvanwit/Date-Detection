@@ -1,6 +1,36 @@
 #! python3
 
-import re, pyperclip
+import re, pyperclip, sys
+
+#Dictionary of output formats
+
+helpText = 'dateDetection [format] [separator]\n\n[format]\n"validation"\n"DMY"(by default)\n"MDY"\n"YMD"\n\n[separator]\n"/" by default if not specified\nany string\n"space" for " " separator'
+message = ''
+dateFormats = {
+	'validation': lambda: dateFormating.append(allDates[i] + '   ' + isValid[i]),
+	'DMY': lambda: dateFormating.append(day[i] + argSep + month[i] + argSep + year[i]),
+	'MDY': lambda: dateFormating.append(month[i] + argSep + day[i] + argSep + year[i]),
+	'YMD': lambda: dateFormating.append(year[i] + argSep + month[i] + argSep + day[i])
+}
+
+
+
+#Check if an argument has been passed and set default values if not
+if len(sys.argv) == 1: #default values if no arguments
+	argFormat = 'DMY'
+	argSep = '/'
+elif sys.argv[1] == 'help': #help message
+		print(helpText)
+		sys.exit()
+elif len(sys.argv) > 1: #if 1 argument
+	argFormat = sys.argv[1]
+	if len(sys.argv) > 2:#if 2 arguments
+		if sys.argv[2] == 'space':
+			argSep = ' '
+		else:
+			argSep = sys.argv[2]
+	else: 
+		argSep = '/' #default if only format argument
 
 # Create a regex object for dates in the DD/MM/YYYY format
 
@@ -49,7 +79,8 @@ def isLeapYear(someYear):
 	else:
 		return False
 
-combinedDateValidation = []
+dateFormating = []
+	# Date validation
 for i in range(len(allDates)):
 	if month[i] in thirtyMonths and int(day[i]) == 31: #31 days in a 30 days month
 		isValid.append('not valid')
@@ -60,17 +91,19 @@ for i in range(len(allDates)):
 	else:
 		isValid.append('valid')
 
-# Copy the extracted dates and the validation infos to the clipboard	
-	combinedDateValidation.append(allDates[i] + '   ' + isValid[i])
 
+# Date formating depending on argument
+	if argFormat in dateFormats:
+		dateFormats[argFormat]()
+		message = 'Dates have been copied to the clipboard in the "' + argFormat + '" format with "' + argSep + '" separator.'
+	else:
+		message = 'Error : There is no "' + argFormat + '" format. Try dateDetection help for a list of formats.'
+		break
 
-	
-result = '\n'.join(combinedDateValidation)
+if allDates == []:
+        message = 'No dates detected in copied text. This program only find dates DD/MM/YYYY format.'
+        
+print(message)	
+result = '\n'.join(dateFormating)
 
 pyperclip.copy(result)
-
-#UPGRADE IDEA
-#Call the program with an argument, to modify the date format
-#
-#			for example : dateDetection [YYYY/MM/DD]
-#
