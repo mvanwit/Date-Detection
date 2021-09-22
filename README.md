@@ -16,14 +16,14 @@ For this project, you will need Python3 installed and the pyperclip module.
 
 ```dateDetection [format] [separator]```
 
-* [format]
-		  * "DMY"(by default)
-		  * "help"
-		  * "validation"
-		  * "MDY"
-		  * "YMD"
+* [format]  
+  * "DMY"(by default)  
+  * "help"  
+  * "validation"  
+  * "MDY"  
+  * "YMD"  
 
-* [separator]
-		  * "/" by default if not specified
-		  * "_any string_" will replace the '/' with the specified string
-		  * "space" for " " separator
+* [separator]  
+  * "/" by default if not specified  
+  * "_any string_" will replace the '/' with the specified string  
+  * "space" for " " separator
